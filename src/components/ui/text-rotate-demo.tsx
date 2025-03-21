@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react"
 import { useInView } from "framer-motion"
 import { X } from "lucide-react"
 
-import { TextRotate, TextRotateRef } from "@/components/ui/text-rotate"
+import { TextRotateRef } from "@/components/ui/text-rotate"
 
 const exampleImages = [
   {
@@ -140,27 +140,9 @@ function Preview() {
   }
 
   return (
-    <div className="w-full h-[70vh] flex"> {/* Reduced height from 100vh to 70vh */}
+    <div className="w-full h-[70vh] flex">
       <div className="w-full h-full relative">
-        <div className="sticky top-16 h-24 w-full flex items-center justify-center bg-hackathon-dark text-white z-10">
-          <div className="w-full text-center">
-            <TextRotate
-              ref={textRotateRef}
-              texts={slicedImages.map((image) => image.author)}
-              mainClassName="text-sm sm:text-2xl md:text-3xl w-full justify-center flex pt-2"
-              splitLevelClassName="overflow-hidden pb-2"
-              staggerFrom={"first"}
-              animatePresenceMode="wait"
-              loop={false}
-              auto={false}
-              staggerDuration={0.005}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
-              transition={{ type: "spring", duration: 0.6, bounce: 0 }}
-            />
-          </div>
-        </div>
+        {/* Removed the sticky header with text animation */}
         <div className="absolute inset-0 overflow-auto snap-y snap-mandatory">
           {slicedImages.map((image, index) => (
             <Item
