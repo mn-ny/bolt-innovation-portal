@@ -1,8 +1,7 @@
-
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { X } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 interface JudgeProps {
@@ -109,7 +108,7 @@ export default function JudgesCarousel() {
   };
   
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
@@ -161,7 +160,7 @@ export default function JudgesCarousel() {
           >
             <CarouselContent className="-ml-4">
               {judges.map((judge, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/2">
                   <motion.div
                     variants={itemVariants}
                     whileHover={{ 
@@ -170,29 +169,42 @@ export default function JudgesCarousel() {
                     }}
                     className="h-full"
                   >
-                    <Card className="bg-gradient-to-br from-[#2c3040] via-[#1e293b] to-[#0f172a] backdrop-blur-lg overflow-hidden h-full border border-white/10 hover:border-white/20 transition-all duration-300">
-                      <div className="aspect-square w-full overflow-hidden">
-                        <img 
-                          src={judge.image} 
-                          alt={judge.name}
-                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                        />
-                      </div>
-                      <CardHeader className="pb-2">
-                        <CardTitle className="text-2xl text-white font-display">{judge.name}</CardTitle>
-                        <CardDescription className="text-white/70 flex items-center gap-2 mt-1">
-                          <div className="bg-black rounded p-0.5">
-                            <X className="w-3 h-3 text-white" />
+                    <Card className="overflow-hidden h-full border border-white/10 hover:border-white/20 transition-all duration-300">
+                      {/* Glassmorphism background with gradients */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#2c3040]/60 via-[#1e293b]/50 to-[#0f172a]/60 opacity-80"></div>
+                      
+                      {/* Glass overlay */}
+                      <div className="absolute inset-0 backdrop-blur-lg bg-black/5"></div>
+                      
+                      {/* Light overlay at the top (glassmorphism effect) */}
+                      <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-white/10 to-transparent"></div>
+                      
+                      <div className="flex flex-col md:flex-row relative">
+                        <div className="w-full md:w-1/3">
+                          <div className="aspect-[4/3] md:h-full w-full overflow-hidden">
+                            <img 
+                              src={judge.image} 
+                              alt={judge.name}
+                              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                            />
                           </div>
-                          <span className="text-sm font-medium">@{judge.twitter}</span>
-                        </CardDescription>
-                        <CardDescription className="text-white/80 mt-1">
-                          {judge.role}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-white/80 text-sm">{judge.bio}</p>
-                      </CardContent>
+                        </div>
+                        
+                        <div className="w-full md:w-2/3 p-6">
+                          <h3 className="text-2xl text-white font-display font-bold">{judge.name}</h3>
+                          
+                          <div className="flex items-center gap-2 mt-1 mb-1">
+                            <div className="bg-black rounded-full p-0.5">
+                              <X className="w-3 h-3 text-white" />
+                            </div>
+                            <span className="text-sm font-medium text-white/70">@{judge.twitter}</span>
+                          </div>
+                          
+                          <p className="text-white/80 text-sm mb-2">{judge.role}</p>
+                          
+                          <p className="text-white/70 text-sm">{judge.bio}</p>
+                        </div>
+                      </div>
                     </Card>
                   </motion.div>
                 </CarouselItem>

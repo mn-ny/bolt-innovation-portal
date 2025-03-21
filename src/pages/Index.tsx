@@ -29,7 +29,7 @@ export default function Index() {
         initial={{ opacity: 0 }}
         animate={{ opacity: isLoading ? 0 : 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="min-h-screen bg-hackathon-dark overflow-hidden"
+        className="min-h-screen bg-hackathon-dark overflow-x-hidden"
       >
         <Header />
         <main>
