@@ -3,10 +3,9 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import SponsorsSection from "@/components/SponsorsSection";
-import EventDetailsSection from "@/components/EventDetailsSection";
+import SponsorMarquee from "@/components/SponsorMarquee";
 import PrizesSection from "@/components/PrizesSection";
-import JudgesSection from "@/components/JudgesSection";
+import JudgesCarousel from "@/components/JudgesCarousel";
 import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Index() {
@@ -34,10 +33,9 @@ export default function Index() {
         <Header />
         <main>
           <HeroSection setIsLoading={setIsLoading} />
-          <EventDetailsSection />
+          <SponsorMarquee />
           <PrizesSection />
-          <JudgesSection />
-          <SponsorsSection />
+          <JudgesCarousel />
         </main>
       </motion.div>
     </>

@@ -29,24 +29,6 @@ const prizes: PrizeProps[] = [
     amount: "$100,000",
     description: "For outstanding creativity and problem-solving approach",
     emoji: "🥉"
-  },
-  {
-    title: "Best UI/UX",
-    amount: "$75,000",
-    description: "For the most intuitive and visually appealing interface",
-    emoji: "🎨"
-  },
-  {
-    title: "Technical Excellence",
-    amount: "$75,000",
-    description: "For the most technically impressive implementation",
-    emoji: "⚙️"
-  },
-  {
-    title: "Community Choice",
-    amount: "$50,000",
-    description: "Voted by the hackathon community as the favorite project",
-    emoji: "👥"
   }
 ];
 
@@ -155,7 +137,7 @@ export default function PrizesSection() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {prizes.map((prize, index) => (
             <motion.div
