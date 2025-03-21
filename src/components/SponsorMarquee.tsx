@@ -47,7 +47,7 @@ export default function SponsorMarquee() {
   return (
     <section className="relative py-16 overflow-hidden bg-hackathon-dark">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-hackathon-dark via-blue-950/20 to-hackathon-dark z-0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-hackathon-dark via-hackathon-blue/5 to-hackathon-dark z-0" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
@@ -86,7 +86,7 @@ export default function SponsorMarquee() {
                 key={index}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                className="px-8 py-4 flex items-center justify-center min-w-[180px]"
+                className="glassmorphism px-8 py-4 flex items-center justify-center min-w-[180px]"
               >
                 <img 
                   src={sponsor.logo} 

@@ -107,7 +107,7 @@ export default function HeroSection({ setIsLoading }: HeroSectionProps) {
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
         transition={{ duration: 1, delay: 0.5 }}
-        className="absolute top-0 left-0 w-full h-[250px] z-10 bg-gradient-to-b from-black via-black/95 to-transparent" 
+        className="absolute top-0 left-0 w-full h-[250px] z-10 bg-gradient-to-b from-hackathon-dark via-hackathon-dark/95 to-transparent" 
       />
       
       {/* Full-height Spline container - adjusted position */}
@@ -141,7 +141,7 @@ export default function HeroSection({ setIsLoading }: HeroSectionProps) {
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
         transition={{ duration: 1, delay: 0.7 }}
-        className="absolute bottom-0 left-0 w-full h-[500px] z-10 bg-gradient-to-t from-black via-black/80 to-transparent" 
+        className="absolute bottom-0 left-0 w-full h-[500px] z-10 bg-gradient-to-t from-hackathon-dark via-hackathon-dark/80 to-transparent" 
       />
       
       {/* Content container with improved vertical positioning - moved down */}
@@ -174,7 +174,7 @@ export default function HeroSection({ setIsLoading }: HeroSectionProps) {
             whileHover="hover"
             whileTap="tap"
           >
-            <Button size="lg" className="bg-white text-black hover:bg-white/90 px-10 py-7 rounded-full transition-all duration-300 text-base font-medium shadow-xl shadow-blue-500/20">
+            <Button size="lg" className="bg-white text-hackathon-dark hover:bg-white/90 px-10 py-7 rounded-full transition-all duration-300 text-base font-medium shadow-xl shadow-blue-500/20">
               Register Now
             </Button>
           </motion.div>
