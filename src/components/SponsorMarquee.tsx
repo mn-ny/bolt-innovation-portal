@@ -86,7 +86,7 @@ export default function SponsorMarquee() {
                 key={index}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                className="glassmorphism px-8 py-4 flex items-center justify-center min-w-[180px]"
+                className="bg-transparent px-8 py-4 flex items-center justify-center min-w-[180px]"
               >
                 <img 
                   src={sponsor.logo} 

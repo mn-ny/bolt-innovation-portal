@@ -130,26 +130,26 @@ export default function JudgesCarousel() {
                     }}
                     className="h-full"
                   >
-                    <Card className="bg-white/5 backdrop-blur-lg border-white/10 hover:border-white/20 transition-all duration-300 h-full">
+                    <Card className="bg-black/40 backdrop-blur-lg border-none hover:bg-black/50 transition-all duration-300 h-full overflow-hidden">
+                      <div className="aspect-w-16 aspect-h-9 w-full h-48 relative">
+                        <AvatarImage 
+                          src={judge.image} 
+                          alt={judge.name}
+                          className="w-full h-full object-cover"
+                        />
+                        <AvatarFallback className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 text-white text-3xl flex items-center justify-center">
+                          {judge.name.split(' ').map(n => n[0]).join('')}
+                        </AvatarFallback>
+                      </div>
                       <CardHeader className="pb-2">
-                        <div className="flex items-center gap-4">
-                          <Avatar className="w-16 h-16 border-2 border-white/10">
-                            <AvatarImage src={judge.image} alt={judge.name} />
-                            <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-lg">
-                              {judge.name.split(' ').map(n => n[0]).join('')}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <CardTitle className="text-xl text-white">{judge.name}</CardTitle>
-                            <CardDescription className="text-white/70 flex items-center gap-1 mt-1">
-                              <Twitter className="w-3.5 h-3.5 text-blue-400" />
-                              <span>@{judge.twitter}</span>
-                            </CardDescription>
-                          </div>
-                        </div>
+                        <CardTitle className="text-xl text-white">{judge.name}</CardTitle>
+                        <CardDescription className="text-white/70 flex items-center gap-1 mt-1">
+                          <Twitter className="w-3.5 h-3.5 text-blue-400" />
+                          <span>@{judge.twitter}</span>
+                        </CardDescription>
                       </CardHeader>
                       <CardContent>
-                        <ScrollArea className="h-24">
+                        <ScrollArea className="h-20">
                           <p className="text-white/80 text-sm">{judge.bio}</p>
                         </ScrollArea>
                       </CardContent>
@@ -160,10 +160,10 @@ export default function JudgesCarousel() {
             </CarouselContent>
             <div className="flex justify-center mt-8">
               <CarouselPrevious 
-                className="relative static transform-none mx-2 bg-white/10 hover:bg-white/20 border-white/20 text-white"
+                className="relative static transform-none mx-2 bg-black/30 hover:bg-black/50 border-none text-white"
               />
               <CarouselNext 
-                className="relative static transform-none mx-2 bg-white/10 hover:bg-white/20 border-white/20 text-white"
+                className="relative static transform-none mx-2 bg-black/30 hover:bg-black/50 border-none text-white"
               />
             </div>
           </Carousel>
