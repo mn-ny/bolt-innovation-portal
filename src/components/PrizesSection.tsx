@@ -13,28 +13,40 @@ interface PrizeProps {
 
 const prizes: PrizeProps[] = [
   {
-    title: "Grand Prize",
+    title: "First Place",
     amount: "$500,000",
     description: "For the most innovative solution with the highest impact potential",
     emoji: "🏆"
   },
   {
-    title: "Runner Up",
+    title: "Second Place",
     amount: "$250,000",
-    description: "For the second-place team with exceptional technical implementation",
+    description: "For exceptional technical implementation and presentation",
     emoji: "🥈"
   },
   {
-    title: "People's Choice",
+    title: "Third Place",
     amount: "$100,000",
-    description: "Voted by the community for the most popular project",
-    emoji: "👑"
+    description: "For outstanding creativity and problem-solving approach",
+    emoji: "🥉"
+  },
+  {
+    title: "Best UI/UX",
+    amount: "$75,000",
+    description: "For the most intuitive and visually appealing interface",
+    emoji: "🎨"
   },
   {
     title: "Technical Excellence",
-    amount: "$150,000",
+    amount: "$75,000",
     description: "For the most technically impressive implementation",
-    emoji: "⚡"
+    emoji: "⚙️"
+  },
+  {
+    title: "Community Choice",
+    amount: "$50,000",
+    description: "Voted by the hackathon community as the favorite project",
+    emoji: "👥"
   }
 ];
 
@@ -84,19 +96,19 @@ export default function PrizesSection() {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
+        staggerChildren: 0.1
       }
     }
   };
   
   const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
+    hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
         type: "spring",
-        damping: 15,
+        damping: 20,
         stiffness: 100
       }
     }
@@ -115,7 +127,7 @@ export default function PrizesSection() {
   };
 
   return (
-    <section ref={ref} className="relative py-24 overflow-hidden">
+    <section ref={ref} className="relative py-24 overflow-hidden" id="prizes">
       {/* Background gradient */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -124,7 +136,7 @@ export default function PrizesSection() {
         className="absolute inset-0 bg-gradient-to-t from-hackathon-dark/0 via-hackathon-blue/5 to-hackathon-dark/0 z-0"
       />
       
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
           variants={headingVariants}
           initial="hidden"
@@ -143,7 +155,7 @@ export default function PrizesSection() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {prizes.map((prize, index) => (
             <motion.div
@@ -151,31 +163,28 @@ export default function PrizesSection() {
               variants={itemVariants}
               whileHover={{ 
                 y: -5, 
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
                 transition: { type: "spring", stiffness: 300, damping: 15 }
               }}
             >
-              <Card className="bg-white/5 backdrop-blur-lg border-white/10 hover:border-white/20 transition-all duration-300 group overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 opacity-70" />
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-2xl font-bold text-white font-display">{prize.title}</CardTitle>
-                    <motion.div
-                      whileHover={{ 
-                        rotate: 5, 
-                        scale: 1.1,
-                        transition: { type: "spring", stiffness: 300, damping: 10 }
-                      }}
-                      className="text-4xl"
-                    >
-                      {prize.emoji}
-                    </motion.div>
-                  </div>
-                  <CardDescription className="text-white/70 text-xl font-semibold">
+              <Card className="bg-black border border-white/10 hover:border-white/20 transition-all duration-300 overflow-hidden h-full flex flex-col">
+                <CardHeader className="pb-0 flex flex-col items-center text-center">
+                  <motion.div
+                    whileHover={{ 
+                      scale: 1.1,
+                      transition: { type: "spring", stiffness: 300, damping: 10 }
+                    }}
+                    className="text-4xl mb-3"
+                  >
+                    {prize.emoji}
+                  </motion.div>
+                  <CardTitle className="text-2xl font-bold text-white font-display">
+                    {prize.title}
+                  </CardTitle>
+                  <CardDescription className="text-white text-2xl font-bold mt-2">
                     <CountAnimation value={prize.amount} />
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-grow flex items-center justify-center text-center pt-4">
                   <p className="text-white/80">{prize.description}</p>
                 </CardContent>
               </Card>
