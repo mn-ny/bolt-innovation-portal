@@ -21,12 +21,8 @@ export default function Header() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const navigationItems = [
-    { label: "Info", href: "#info" },
-    { label: "Judges", href: "#judges" },
-    { label: "Process", href: "#process" },
-    { label: "FAQ", href: "#faq" }
-  ];
+  // Removed unused navigation items
+  const navigationItems = [];
 
   return (
     <header className={cn(
@@ -43,41 +39,45 @@ export default function Header() {
         </a>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navigationItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className={cn(
-                "text-sm font-medium transition-colors duration-200",
-                location.pathname === item.href 
-                  ? "text-white" 
-                  : "text-white/70 hover:text-white"
-              )}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        {navigationItems.length > 0 && (
+          <nav className="hidden md:flex items-center space-x-8">
+            {navigationItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className={cn(
+                  "text-sm font-medium transition-colors duration-200",
+                  location.pathname === item.href 
+                    ? "text-white" 
+                    : "text-white/70 hover:text-white"
+                )}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        )}
         
         <div className="flex items-center gap-4">
           <Button className="glassmorphism text-white hover:bg-white/20 transition-all duration-300" size="sm">
             Register Now!
           </Button>
           
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden text-white p-1"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile menu button - only show if we have navigation items */}
+          {navigationItems.length > 0 && (
+            <button
+              className="md:hidden text-white p-1"
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          )}
         </div>
       </div>
       
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
+      {/* Mobile Navigation - only show if menu is open and we have navigation items */}
+      {isMenuOpen && navigationItems.length > 0 && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-hackathon-dark/90 backdrop-blur-lg border-b border-white/10 py-4 px-6 animate-fade-in">
           <nav className="flex flex-col space-y-4">
             {navigationItems.map((item) => (
