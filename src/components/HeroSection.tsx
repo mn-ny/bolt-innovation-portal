@@ -174,7 +174,12 @@ export default function HeroSection({ setIsLoading }: HeroSectionProps) {
             whileHover="hover"
             whileTap="tap"
           >
-            <Button size="lg" className="bg-white text-hackathon-dark hover:bg-white/90 px-10 py-7 rounded-full transition-all duration-300 text-base font-medium shadow-xl shadow-blue-500/20">
+            <Button 
+              variant="hackathon" 
+              size="xl" 
+              rounded="full" 
+              className="transition-all duration-300 text-base font-medium"
+            >
               Register Now
             </Button>
           </motion.div>
@@ -185,7 +190,12 @@ export default function HeroSection({ setIsLoading }: HeroSectionProps) {
             animate="visible"
             whileHover="hover"
           >
-            <Button variant="outline" size="lg" className="bg-transparent border-2 border-white/20 text-white hover:bg-white/10 px-10 py-7 rounded-full transition-all duration-300 text-base font-medium">
+            <Button 
+              variant="hackathon_outline" 
+              size="xl" 
+              rounded="full" 
+              className="transition-all duration-300 text-base font-medium"
+            >
               <span className="flex items-center gap-3">
                 <span className="h-3 w-3 rounded-full bg-blue-500 inline-block animate-pulse-subtle"></span>
                 Become a Sponsor
