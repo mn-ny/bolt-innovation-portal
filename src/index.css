@@ -46,6 +46,11 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Custom hackathon colors */
+    --hackathon-dark: 240 10% 3.9%;
+    --hackathon-blue: 217.2 91.2% 59.8%;
+    --hackathon-light: 0 0% 98%;
   }
 
   .dark {
@@ -76,6 +81,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -93,7 +99,7 @@
   }
 
   body {
-    @apply bg-hackathon-dark text-foreground;
+    @apply bg-hackathon-dark text-white;
     font-feature-settings: "ss01" on, "ss02" on, "cv01" on, "cv03" on;
   }
   
@@ -107,7 +113,7 @@
   }
   
   .glassmorphism {
-    @apply bg-black/10 backdrop-blur-lg border border-white/10 rounded-full;
+    @apply bg-black/30 backdrop-blur-lg border border-white/10 rounded-full;
   }
   
   .sponsor-image {
@@ -141,4 +147,19 @@
 
 .animate-pulse-subtle {
   animation: pulse-subtle 4s ease-in-out infinite;
+}
+
+/* Add custom colors to Tailwind's color palette */
+@layer utilities {
+  .bg-hackathon-dark {
+    background-color: #111111;
+  }
+  
+  .bg-hackathon-blue {
+    background-color: #3b82f6;
+  }
+  
+  .text-hackathon-light {
+    color: #f9fafb;
+  }
 }
