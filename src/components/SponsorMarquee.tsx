@@ -9,28 +9,40 @@ interface SponsorProps {
 
 const sponsors: SponsorProps[] = [
   {
-    name: "DUDE WIPES",
-    logo: "/lovable-uploads/f2fb5553-161e-4078-b8d9-705d241525d6.png"
+    name: "Algorand",
+    logo: "https://raw.githubusercontent.com/mn-ny/static/refs/heads/main/algorand.png"
   },
   {
-    name: "WonderUp",
-    logo: "/lovable-uploads/f2fb5553-161e-4078-b8d9-705d241525d6.png"
+    name: "Anthropic",
+    logo: "https://raw.githubusercontent.com/mn-ny/static/refs/heads/main/anthropic.png"
   },
   {
-    name: "bobblehat",
-    logo: "/lovable-uploads/f2fb5553-161e-4078-b8d9-705d241525d6.png"
+    name: "Cloudflare",
+    logo: "https://raw.githubusercontent.com/mn-ny/static/refs/heads/main/cloudflare.png"
   },
   {
-    name: "coda",
-    logo: "/lovable-uploads/f2fb5553-161e-4078-b8d9-705d241525d6.png"
+    name: "Exa",
+    logo: "https://raw.githubusercontent.com/mn-ny/static/refs/heads/main/exa.png"
   },
   {
-    name: "evon",
-    logo: "/lovable-uploads/f2fb5553-161e-4078-b8d9-705d241525d6.png"
+    name: "HSR",
+    logo: "https://raw.githubusercontent.com/mn-ny/static/refs/heads/main/hsr.png"
   },
   {
-    name: "Wonder",
-    logo: "/lovable-uploads/f2fb5553-161e-4078-b8d9-705d241525d6.png"
+    name: "Loops",
+    logo: "https://raw.githubusercontent.com/mn-ny/static/refs/heads/main/loops.png"
+  },
+  {
+    name: "Netlify",
+    logo: "https://raw.githubusercontent.com/mn-ny/static/refs/heads/main/netlify.png"
+  },
+  {
+    name: "Sentry",
+    logo: "https://raw.githubusercontent.com/mn-ny/static/refs/heads/main/sentry.png"
+  },
+  {
+    name: "Supabase",
+    logo: "https://raw.githubusercontent.com/mn-ny/static/refs/heads/main/supabase.png"
   }
 ];
 
