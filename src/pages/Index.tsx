@@ -6,6 +6,7 @@ import HeroSection from "@/components/HeroSection";
 import SponsorsSection from "@/components/SponsorsSection";
 import EventDetailsSection from "@/components/EventDetailsSection";
 import PrizesSection from "@/components/PrizesSection";
+import JudgesSection from "@/components/JudgesSection";
 import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Index() {
@@ -35,6 +36,7 @@ export default function Index() {
           <HeroSection setIsLoading={setIsLoading} />
           <EventDetailsSection />
           <PrizesSection />
+          <JudgesSection />
           <SponsorsSection />
         </main>
       </motion.div>

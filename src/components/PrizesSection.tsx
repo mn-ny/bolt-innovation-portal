@@ -1,15 +1,14 @@
 
-import { Trophy, Award, Gift, Zap } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface PrizeProps {
   title: string;
   amount: string;
   description: string;
-  icon: React.ReactNode;
+  emoji: string;
 }
 
 const prizes: PrizeProps[] = [
@@ -17,25 +16,25 @@ const prizes: PrizeProps[] = [
     title: "Grand Prize",
     amount: "$500,000",
     description: "For the most innovative solution with the highest impact potential",
-    icon: <Trophy className="w-8 h-8 text-yellow-400" />
+    emoji: "🏆"
   },
   {
     title: "Runner Up",
     amount: "$250,000",
     description: "For the second-place team with exceptional technical implementation",
-    icon: <Award className="w-8 h-8 text-blue-400" />
+    emoji: "🥈"
   },
   {
     title: "People's Choice",
     amount: "$100,000",
     description: "Voted by the community for the most popular project",
-    icon: <Gift className="w-8 h-8 text-purple-400" />
+    emoji: "👑"
   },
   {
     title: "Technical Excellence",
     amount: "$150,000",
     description: "For the most technically impressive implementation",
-    icon: <Zap className="w-8 h-8 text-green-400" />
+    emoji: "⚡"
   }
 ];
 
@@ -153,7 +152,6 @@ export default function PrizesSection() {
               whileHover={{ 
                 y: -5, 
                 boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                borderColor: "rgba(255, 255, 255, 0.2)",
                 transition: { type: "spring", stiffness: 300, damping: 15 }
               }}
             >
@@ -168,8 +166,9 @@ export default function PrizesSection() {
                         scale: 1.1,
                         transition: { type: "spring", stiffness: 300, damping: 10 }
                       }}
+                      className="text-4xl"
                     >
-                      {prize.icon}
+                      {prize.emoji}
                     </motion.div>
                   </div>
                   <CardDescription className="text-white/70 text-xl font-semibold">
