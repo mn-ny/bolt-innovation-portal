@@ -109,7 +109,7 @@ function Preview() {
   return (
     <div className="w-full h-screen flex">
       <div className="w-full h-full relative">
-        <div className="sticky top-0 h-screen w-full flex items-center justify-end bg-white dark:text-muted text-foreground">
+        <div className="sticky top-0 h-screen w-full flex items-center justify-end bg-hackathon-dark text-white">
           <div className="w-2/3">
             <TextRotate
               ref={textRotateRef}
