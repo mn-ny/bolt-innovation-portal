@@ -5,6 +5,7 @@ import { Twitter } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { disableScroll } from "@/utils/scroll-utils";
 
 interface JudgeProps {
   name: string;
@@ -57,13 +58,13 @@ export default function CinematicJudgesSection() {
   const horizontalRef = useRef<HTMLDivElement>(null);
   const [horizontalScrollComplete, setHorizontalScrollComplete] = useState(false);
   const [verticalScrollPaused, setVerticalScrollPaused] = useState(false);
+  const [readyToAnimate, setReadyToAnimate] = useState(false);
   const controls = useAnimationControls();
   
   // Track if section is in view
   const isInView = useInView(sectionRef, { 
     once: false, 
-    amount: 0.2,
-    margin: "-10% 0px -10% 0px"
+    amount: 0.7, // Increase this value to ensure more of the section is visible
   });
   
   // Calculate the scroll progress
@@ -86,13 +87,30 @@ export default function CinematicJudgesSection() {
     [0, 1, 1, 0]
   );
 
-  // Handle vertical scroll pause
+  // Handle vertical scroll pause with delay
+  useEffect(() => {
+    let animationTimeout: number;
+    let scrollRestoreTimeout: number;
+    
+    if (isInView && !horizontalScrollComplete && !readyToAnimate) {
+      // Add a delay before starting the animation
+      animationTimeout = window.setTimeout(() => {
+        setReadyToAnimate(true);
+      }, 800); // Delay before starting animation
+    }
+    
+    return () => {
+      window.clearTimeout(animationTimeout);
+    };
+  }, [isInView, horizontalScrollComplete, readyToAnimate]);
+
+  // Handle the animation sequence
   useEffect(() => {
     let scrollRestoreTimeout: number;
     
-    if (isInView && !horizontalScrollComplete) {
+    if (readyToAnimate && isInView && !horizontalScrollComplete) {
       // Pause vertical scrolling
-      document.body.style.overflow = 'hidden';
+      disableScroll(true);
       setVerticalScrollPaused(true);
       
       // Start horizontal scroll animation
@@ -108,23 +126,26 @@ export default function CinematicJudgesSection() {
         
         // Set a small delay before resuming vertical scroll for a smooth experience
         scrollRestoreTimeout = window.setTimeout(() => {
-          document.body.style.overflow = '';
+          disableScroll(false);
           setVerticalScrollPaused(false);
+          setReadyToAnimate(false);
         }, 500);
       });
     } else if (!isInView) {
       // If scrolled away before animation completes, reset
       controls.stop();
       setHorizontalScrollComplete(false);
-      document.body.style.overflow = '';
+      setReadyToAnimate(false);
+      disableScroll(false);
       setVerticalScrollPaused(false);
     }
     
     return () => {
       window.clearTimeout(scrollRestoreTimeout);
-      document.body.style.overflow = '';
+      // Ensure scroll is re-enabled when component unmounts
+      disableScroll(false);
     };
-  }, [isInView, horizontalScrollComplete, controls]);
+  }, [readyToAnimate, isInView, horizontalScrollComplete, controls]);
 
   return (
     <section ref={sectionRef} className="relative h-screen overflow-hidden" id="judges">
@@ -205,7 +226,7 @@ export default function CinematicJudgesSection() {
             className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/50 text-sm flex flex-col items-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            transition={{ delay: 0.5 }}
           >
             <p>Showcasing judges</p>
             <div className="mt-2 flex space-x-1">
@@ -228,6 +249,20 @@ export default function CinematicJudgesSection() {
                   }}
                 />
               ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Ready to animate indicator */}
+        {isInView && !readyToAnimate && !horizontalScrollComplete && (
+          <motion.div 
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full">
+              <p className="text-white/80 text-sm">Continue scrolling to meet our judges</p>
             </div>
           </motion.div>
         )}

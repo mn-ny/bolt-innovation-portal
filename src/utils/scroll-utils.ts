@@ -12,15 +12,20 @@ export const disableScroll = (disable: boolean) => {
     document.body.style.position = 'fixed';
     document.body.style.top = `-${scrollY}px`;
     document.body.style.width = '100%';
+    document.body.style.overflowY = 'scroll'; // Keep the scrollbar visible to prevent layout shift
     document.body.dataset.scrollY = scrollY.toString();
   } else {
-    // Restore scroll position
-    const scrollY = document.body.dataset.scrollY || '0';
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    window.scrollTo(0, parseInt(scrollY));
-    delete document.body.dataset.scrollY;
+    // Only restore if we actually disabled scroll previously
+    if (document.body.style.position === 'fixed') {
+      // Restore scroll position
+      const scrollY = document.body.dataset.scrollY || '0';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflowY = '';
+      window.scrollTo(0, parseInt(scrollY));
+      delete document.body.dataset.scrollY;
+    }
   }
 };
 
