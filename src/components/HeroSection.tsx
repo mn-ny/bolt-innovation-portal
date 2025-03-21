@@ -11,7 +11,7 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
       {/* Top gradient overlay */}
-      <div className="absolute top-0 left-0 w-full h-[100px] z-10 bg-gradient-to-b from-hackathon-dark to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-[150px] z-10 bg-gradient-to-b from-hackathon-dark to-transparent" />
       
       {/* Full-height Spline container */}
       <div className="absolute inset-0 w-full h-full">
@@ -25,17 +25,17 @@ export default function HeroSection() {
       </div>
       
       {/* Bottom gradient overlay */}
-      <div className="absolute bottom-0 left-0 w-full h-[300px] z-10 bg-gradient-to-t from-hackathon-dark to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-[400px] z-10 bg-gradient-to-t from-hackathon-dark to-transparent" />
       
       {/* Content container with improved vertical positioning */}
       <div className="relative z-20 max-w-4xl mx-auto text-center px-6 py-16 mt-10">
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-tight leading-tight">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-10 tracking-tight leading-tight">
           <span className="block font-display">The World's</span>
           <span className="block italic font-normal font-display text-white/90">Largest</span>
           <span className="block font-display">Hackathon</span>
         </h1>
         
-        <p className="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto">
+        <p className="text-xl md:text-2xl text-white/80 mb-14 max-w-2xl mx-auto leading-relaxed">
           Transform your operations with AI-driven solutions that cut costs, save time, and boost efficiency all in record time.
         </p>
         
