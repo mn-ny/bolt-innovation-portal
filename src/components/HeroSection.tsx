@@ -1,9 +1,8 @@
-
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Spline from "@splinetool/react-spline";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { motion, useAnimate, AnimatePresence, stagger } from "framer-motion";
+import { motion, useAnimate, AnimatePresence } from "framer-motion";
 
 interface HeroSectionProps {
   setIsLoading?: (loading: boolean) => void;
@@ -63,41 +62,27 @@ export default function HeroSection({ setIsLoading }: HeroSectionProps) {
     }
   };
   
-  // Button animations
+  // Button container animations - simplified to not conflict with button styling
   const primaryButtonVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
+    hidden: { opacity: 0 },
     visible: { 
-      scale: 1, 
       opacity: 1,
       transition: {
         delay: 2.0,
-        type: "spring",
-        stiffness: 200,
-        damping: 15
+        duration: 0.5
       }
     },
-    hover: { 
-      scale: 1.05,
-      boxShadow: "0 10px 25px rgba(59, 130, 246, 0.4)",
-      transition: { duration: 0.2 }
-    },
-    tap: { scale: 0.95 }
   };
   
   const secondaryButtonVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0 },
     visible: { 
-      opacity: 1, 
-      y: 0,
+      opacity: 1,
       transition: {
         delay: 2.2,
         duration: 0.5
       }
     },
-    hover: { 
-      backgroundColor: "rgba(255, 255, 255, 0.15)",
-      transition: { duration: 0.2 }
-    }
   };
 
   return (
@@ -171,14 +156,12 @@ export default function HeroSection({ setIsLoading }: HeroSectionProps) {
             variants={primaryButtonVariants}
             initial="hidden"
             animate="visible"
-            whileHover="hover"
-            whileTap="tap"
           >
             <Button 
               variant="hackathon" 
               size="xl" 
-              rounded="full" 
-              className="transition-all duration-300 text-base font-medium"
+              rounded="full"
+              className="hover:scale-105 transition-transform duration-300"
             >
               Register Now
             </Button>
@@ -188,13 +171,12 @@ export default function HeroSection({ setIsLoading }: HeroSectionProps) {
             variants={secondaryButtonVariants}
             initial="hidden"
             animate="visible"
-            whileHover="hover"
           >
             <Button 
               variant="hackathon_outline" 
               size="xl" 
-              rounded="full" 
-              className="transition-all duration-300 text-base font-medium"
+              rounded="full"
+              className="hover:scale-105 transition-transform duration-300"
             >
               <span className="flex items-center gap-3">
                 <span className="h-3 w-3 rounded-full bg-blue-500 inline-block animate-pulse-subtle"></span>

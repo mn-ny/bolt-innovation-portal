@@ -1,11 +1,12 @@
 
 import { useState, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { 
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger
-} from "@/components/ui/collapsible";
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -38,14 +39,6 @@ export default function FAQSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   
-  const toggleItem = (id: string) => {
-    setOpenItems(prev => 
-      prev.includes(id) 
-        ? prev.filter(item => item !== id) 
-        : [...prev, id]
-    );
-  };
-  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -64,29 +57,14 @@ export default function FAQSection() {
       opacity: 1,
       transition: {
         type: "spring",
-        damping: 20,
+        damping: 25,
         stiffness: 100
       }
     }
   };
   
-  const contentVariants = {
-    hidden: { height: 0, opacity: 0 },
-    visible: { 
-      height: "auto", 
-      opacity: 1,
-      transition: {
-        height: {
-          type: "spring",
-          stiffness: 300,
-          damping: 30
-        },
-        opacity: {
-          duration: 0.2,
-          delay: 0.05
-        }
-      }
-    }
+  const handleAccordionChange = (value: string[]) => {
+    setOpenItems(value);
   };
   
   return (
@@ -120,56 +98,42 @@ export default function FAQSection() {
           animate={isInView ? "visible" : "hidden"}
           className="space-y-4"
         >
-          {faqItems.map((item, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="overflow-hidden"
-            >
-              <Collapsible
-                open={openItems.includes(`item-${index}`)}
-                onOpenChange={() => toggleItem(`item-${index}`)}
-                className="w-full bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
+          <Accordion
+            type="multiple"
+            value={openItems}
+            onValueChange={handleAccordionChange}
+            className="space-y-4"
+          >
+            {faqItems.map((item, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="overflow-hidden"
               >
-                <CollapsibleTrigger className="w-full flex items-center justify-between p-6 text-white hover:bg-white/5 transition-colors">
-                  <span className="text-xl font-medium text-left">{item.question}</span>
-                  <div className="bg-white/10 rounded-full p-1">
-                    {openItems.includes(`item-${index}`) ? (
-                      <ChevronUp className="h-5 w-5 text-white" />
-                    ) : (
-                      <ChevronDown className="h-5 w-5 text-white" />
-                    )}
-                  </div>
-                </CollapsibleTrigger>
-                
-                <AnimatePresence>
-                  {openItems.includes(`item-${index}`) && (
-                    <CollapsibleContent 
-                      asChild
-                      forceMount
-                    >
-                      <motion.div
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden"
-                        variants={contentVariants}
-                        className="px-6 pb-6 pt-0"
-                      >
-                        <motion.div
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.3, delay: 0.1 }}
-                          className="text-white/80"
-                        >
-                          {item.answer}
-                        </motion.div>
-                      </motion.div>
-                    </CollapsibleContent>
-                  )}
-                </AnimatePresence>
-              </Collapsible>
-            </motion.div>
-          ))}
+                <AccordionItem 
+                  value={`item-${index}`}
+                  className="border-none bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
+                >
+                  <AccordionTrigger className="px-6 py-4 text-white hover:bg-white/5 transition-colors data-[state=open]:bg-white/5">
+                    <div className="flex items-center justify-between w-full">
+                      <span className="text-xl font-medium text-left">{item.question}</span>
+                      <div className="bg-white/10 rounded-full p-1 ml-4">
+                        {openItems.includes(`item-${index}`) ? (
+                          <ChevronUp className="h-5 w-5 text-white" />
+                        ) : (
+                          <ChevronDown className="h-5 w-5 text-white" />
+                        )}
+                      </div>
+                    </div>
+                  </AccordionTrigger>
+                  
+                  <AccordionContent className="text-white/80 px-6 pb-6">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
+            ))}
+          </Accordion>
         </motion.div>
         
         <motion.div
