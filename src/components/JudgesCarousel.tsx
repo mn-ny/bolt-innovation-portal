@@ -2,10 +2,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Twitter } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface JudgeProps {
   name: string;
@@ -130,28 +128,23 @@ export default function JudgesCarousel() {
                     }}
                     className="h-full"
                   >
-                    <Card className="bg-white/5 backdrop-blur-lg border-white/10 hover:border-white/20 transition-all duration-300 h-full">
+                    <Card className="bg-black/30 backdrop-blur-lg overflow-hidden h-full border-none">
+                      <div className="aspect-[4/3] w-full overflow-hidden">
+                        <img 
+                          src={judge.image} 
+                          alt={judge.name}
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        />
+                      </div>
                       <CardHeader className="pb-2">
-                        <div className="flex items-center gap-4">
-                          <Avatar className="w-16 h-16 border-2 border-white/10">
-                            <AvatarImage src={judge.image} alt={judge.name} />
-                            <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-lg">
-                              {judge.name.split(' ').map(n => n[0]).join('')}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <CardTitle className="text-xl text-white">{judge.name}</CardTitle>
-                            <CardDescription className="text-white/70 flex items-center gap-1 mt-1">
-                              <Twitter className="w-3.5 h-3.5 text-blue-400" />
-                              <span>@{judge.twitter}</span>
-                            </CardDescription>
-                          </div>
-                        </div>
+                        <CardTitle className="text-2xl text-white font-display">{judge.name}</CardTitle>
+                        <CardDescription className="text-white/70 flex items-center gap-1 mt-1">
+                          <Twitter className="w-3.5 h-3.5 text-blue-400" />
+                          <span>@{judge.twitter}</span>
+                        </CardDescription>
                       </CardHeader>
                       <CardContent>
-                        <ScrollArea className="h-24">
-                          <p className="text-white/80 text-sm">{judge.bio}</p>
-                        </ScrollArea>
+                        <p className="text-white/80 text-sm">{judge.bio}</p>
                       </CardContent>
                     </Card>
                   </motion.div>

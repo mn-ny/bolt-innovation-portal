@@ -2,7 +2,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface PrizeProps {
   title: string;
@@ -115,7 +114,7 @@ export default function PrizesSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: isInView ? 1 : 0 }}
         transition={{ duration: 1.2 }}
-        className="absolute inset-0 bg-gradient-to-t from-hackathon-dark/0 via-hackathon-blue/5 to-hackathon-dark/0 z-0"
+        className="absolute inset-0 bg-gradient-to-t from-hackathon-dark/0 via-hackathon-blue/10 to-hackathon-dark/0 z-0"
       />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -148,28 +147,28 @@ export default function PrizesSection() {
                 transition: { type: "spring", stiffness: 300, damping: 15 }
               }}
             >
-              <Card className="bg-black border border-white/10 hover:border-white/20 transition-all duration-300 overflow-hidden h-full flex flex-col">
-                <CardHeader className="pb-0 flex flex-col items-center text-center">
+              <div className="bg-black/20 backdrop-blur-lg rounded-2xl overflow-hidden h-full flex flex-col transform transition-all duration-300 hover:bg-black/30">
+                <div className="p-6 pb-0 flex flex-col items-center text-center">
                   <motion.div
                     whileHover={{ 
                       scale: 1.1,
                       transition: { type: "spring", stiffness: 300, damping: 10 }
                     }}
-                    className="text-4xl mb-3"
+                    className="text-5xl mb-6"
                   >
                     {prize.emoji}
                   </motion.div>
-                  <CardTitle className="text-2xl font-bold text-white font-display">
+                  <h3 className="text-2xl font-bold text-white font-display mb-2">
                     {prize.title}
-                  </CardTitle>
-                  <CardDescription className="text-white text-2xl font-bold mt-2">
+                  </h3>
+                  <div className="text-white text-3xl font-bold mt-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     <CountAnimation value={prize.amount} />
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex-grow flex items-center justify-center text-center pt-4">
+                  </div>
+                </div>
+                <div className="flex-grow flex items-center justify-center text-center p-6">
                   <p className="text-white/80">{prize.description}</p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </motion.div>
           ))}
         </motion.div>

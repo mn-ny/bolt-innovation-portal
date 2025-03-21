@@ -3,10 +3,11 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import SponsorMarquee from "@/components/SponsorMarquee";
+import SponsorsSection from "@/components/SponsorsSection";
 import PrizesSection from "@/components/PrizesSection";
 import JudgesCarousel from "@/components/JudgesCarousel";
 import LoadingScreen from "@/components/LoadingScreen";
+import EventDetailsSection from "@/components/EventDetailsSection";
 
 export default function Index() {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,7 +34,8 @@ export default function Index() {
         <Header />
         <main>
           <HeroSection setIsLoading={setIsLoading} />
-          <SponsorMarquee />
+          <EventDetailsSection />
+          <SponsorsSection />
           <PrizesSection />
           <JudgesCarousel />
         </main>
