@@ -35,14 +35,11 @@ export default function Header() {
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
-          <span className="text-2xl font-bold text-white font-display">
-            <span className="sr-only">Bolt</span>
-            <span className="inline-flex items-center">
-              b
-              <span className="inline-block w-4 h-4 bg-white rounded-full mx-0.5 transform translate-y-0.5"></span>
-              lt.New
-            </span>
-          </span>
+          <img 
+            src="https://raw.githubusercontent.com/mn-ny/static/refs/heads/main/bolt.png" 
+            alt="Bolt Logo" 
+            className="h-8 w-auto"
+          />
         </Link>
         
         {/* Desktop Navigation */}
