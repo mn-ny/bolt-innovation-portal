@@ -34,7 +34,7 @@ export default function Index() {
           <HeroSection setIsLoading={setIsLoading} />
           <SponsorMarquee />
           <div id="judges" className="py-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-8">Meet Our Judges</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">Meet Our Judges</h2>
             <Preview />
           </div>
           <div id="info" className="h-24"></div> {/* Anchor point for info section */}
