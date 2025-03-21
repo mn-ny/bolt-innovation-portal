@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import SponsorMarquee from "@/components/SponsorMarquee";
 import LoadingScreen from "@/components/LoadingScreen";
-import { Preview } from "@/components/ui/text-rotate-demo";
+import JudgesCarousel from "@/components/JudgesCarousel";
 
 export default function Index() {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,10 +33,7 @@ export default function Index() {
         <main>
           <HeroSection setIsLoading={setIsLoading} />
           <SponsorMarquee />
-          <div id="judges" className="py-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-8">Meet Our Judges</h2>
-            <Preview />
-          </div>
+          <JudgesCarousel />
           <div id="info" className="h-24"></div> {/* Anchor point for info section */}
         </main>
       </motion.div>

@@ -1,6 +1,7 @@
+
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { X } from "lucide-react";
+import { Twitter } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
@@ -160,7 +161,7 @@ export default function JudgesCarousel() {
           >
             <CarouselContent className="-ml-4">
               {judges.map((judge, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/2">
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
                   <motion.div
                     variants={itemVariants}
                     whileHover={{ 
@@ -179,9 +180,9 @@ export default function JudgesCarousel() {
                       {/* Light overlay at the top (glassmorphism effect) */}
                       <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-white/10 to-transparent"></div>
                       
-                      <div className="flex flex-col md:flex-row relative">
-                        <div className="w-full md:w-1/3">
-                          <div className="aspect-[4/3] md:h-full w-full overflow-hidden">
+                      <div className="flex flex-col relative">
+                        <div className="w-full">
+                          <div className="aspect-square w-full overflow-hidden">
                             <img 
                               src={judge.image} 
                               alt={judge.name}
@@ -190,17 +191,22 @@ export default function JudgesCarousel() {
                           </div>
                         </div>
                         
-                        <div className="w-full md:w-2/3 p-6">
+                        <div className="p-6">
                           <h3 className="text-2xl text-white font-display font-bold">{judge.name}</h3>
                           
-                          <div className="flex items-center gap-2 mt-1 mb-1">
-                            <div className="bg-black rounded-full p-0.5">
-                              <X className="w-3 h-3 text-white" />
-                            </div>
-                            <span className="text-sm font-medium text-white/70">@{judge.twitter}</span>
+                          <div className="flex items-center gap-2 mt-2 mb-3">
+                            <Twitter className="w-4 h-4 text-white/70" />
+                            <a 
+                              href={`https://twitter.com/${judge.twitter}`} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-sm font-medium text-white/70 hover:text-white transition-colors"
+                            >
+                              @{judge.twitter}
+                            </a>
                           </div>
                           
-                          <p className="text-white/80 text-sm mb-2">{judge.role}</p>
+                          <p className="text-white/80 text-sm mb-3">{judge.role}</p>
                           
                           <p className="text-white/70 text-sm">{judge.bio}</p>
                         </div>
