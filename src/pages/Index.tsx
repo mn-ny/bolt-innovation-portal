@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import SponsorMarquee from "@/components/SponsorMarquee";
 import LoadingScreen from "@/components/LoadingScreen";
+import JudgesSection from "@/components/JudgesSection";
 
 export default function Index() {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,6 +34,7 @@ export default function Index() {
           <HeroSection setIsLoading={setIsLoading} />
           <SponsorMarquee />
           <div id="info" className="h-24"></div> {/* Anchor point for info section */}
+          <JudgesSection />
         </main>
       </motion.div>
     </>
