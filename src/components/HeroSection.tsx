@@ -22,6 +22,9 @@ export default function HeroSection() {
 
   return (
     <section className="hackathon-section min-h-screen relative flex flex-col items-center justify-center pt-20 pb-20">
+      {/* Top gradient overlay to ensure smooth transition at the top */}
+      <div className="absolute top-0 left-0 w-full h-[20vh] z-[1] bg-gradient-to-b from-hackathon-dark via-hackathon-dark/95 to-transparent" />
+      
       {/* Repositioned spline container */}
       <div className="spline-container absolute inset-0 top-auto h-[70vh] bottom-0">
         {!isMobile && (
@@ -32,7 +35,7 @@ export default function HeroSection() {
         )}
       </div>
       
-      {/* Enhanced gradient overlay */}
+      {/* Enhanced gradient overlay for bottom */}
       <div className="absolute bottom-0 left-0 w-full h-[40vh] z-[1] bg-gradient-to-t from-hackathon-dark via-hackathon-dark/95 to-transparent" />
       
       <div className="relative z-10 max-w-4xl mx-auto text-center px-6 animate-fade-up mt-[-10vh]">
@@ -47,10 +50,10 @@ export default function HeroSection() {
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button size="lg" className="bg-hackathon-blue-dark text-white hover:bg-hackathon-blue-dark/80 px-8 py-6 rounded-full transition-all duration-300 shadow-lg shadow-blue-500/20">
+          <Button size="lg" className="bg-white text-hackathon-dark hover:bg-white/90 px-8 py-6 rounded-full transition-all duration-300 shadow-lg shadow-blue-500/20">
             Register Now
           </Button>
-          <Button variant="outline" size="lg" className="glassmorphism text-white hover:bg-white/20 px-8 py-6 rounded-full transition-all duration-300">
+          <Button variant="outline" size="lg" className="bg-transparent border border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded-full transition-all duration-300">
             <span className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-blue-500 inline-block"></span>
               Become a Sponsor
