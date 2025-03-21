@@ -1,26 +1,43 @@
 
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import SponsorsSection from "@/components/SponsorsSection";
 import EventDetailsSection from "@/components/EventDetailsSection";
 import PrizesSection from "@/components/PrizesSection";
-import { motion } from "framer-motion";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Index() {
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // Simulate minimum loading time for better UX
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen bg-hackathon-dark overflow-hidden"
-    >
-      <Header />
-      <main>
-        <HeroSection />
-        <EventDetailsSection />
-        <PrizesSection />
-        <SponsorsSection />
-      </main>
-    </motion.div>
+    <>
+      <LoadingScreen isLoading={isLoading} />
+      
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoading ? 0 : 1 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="min-h-screen bg-hackathon-dark overflow-hidden"
+      >
+        <Header />
+        <main>
+          <HeroSection setIsLoading={setIsLoading} />
+          <EventDetailsSection />
+          <PrizesSection />
+          <SponsorsSection />
+        </main>
+      </motion.div>
+    </>
   );
 }

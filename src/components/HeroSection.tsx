@@ -5,9 +5,24 @@ import Spline from "@splinetool/react-spline";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { motion, useAnimate, AnimatePresence, stagger } from "framer-motion";
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  setIsLoading?: (loading: boolean) => void;
+}
+
+export default function HeroSection({ setIsLoading }: HeroSectionProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const isMobile = useIsMobile();
+  
+  useEffect(() => {
+    if (isLoaded && setIsLoading) {
+      // Small delay to ensure smooth transition
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isLoaded, setIsLoading]);
   
   // Split text animation for title
   const titleContainer = {
@@ -86,17 +101,17 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-      {/* Top gradient overlay */}
+    <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-20">
+      {/* Top gradient overlay - made stronger */}
       <motion.div 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
         transition={{ duration: 1, delay: 0.5 }}
-        className="absolute top-0 left-0 w-full h-[150px] z-10 bg-gradient-to-b from-hackathon-dark to-transparent" 
+        className="absolute top-0 left-0 w-full h-[250px] z-10 bg-gradient-to-b from-hackathon-dark via-hackathon-dark/95 to-transparent" 
       />
       
-      {/* Full-height Spline container */}
-      <div className="absolute inset-0 w-full h-full">
+      {/* Full-height Spline container - adjusted position */}
+      <div className="absolute inset-0 w-full h-full" style={{ top: "10vh" }}>
         {!isMobile && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -111,23 +126,26 @@ export default function HeroSection() {
           >
             <Spline
               scene="https://prod.spline.design/ITO6OJ2xaZTLiTae/scene.splinecode"
-              onLoad={() => setIsLoaded(true)}
+              onLoad={() => {
+                console.log("Spline scene loaded");
+                setIsLoaded(true);
+              }}
               className="w-full h-full object-cover"
             />
           </motion.div>
         )}
       </div>
       
-      {/* Bottom gradient overlay */}
+      {/* Bottom gradient overlay - made stronger */}
       <motion.div 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
         transition={{ duration: 1, delay: 0.7 }}
-        className="absolute bottom-0 left-0 w-full h-[400px] z-10 bg-gradient-to-t from-hackathon-dark to-transparent" 
+        className="absolute bottom-0 left-0 w-full h-[500px] z-10 bg-gradient-to-t from-hackathon-dark via-hackathon-dark/80 to-transparent" 
       />
       
-      {/* Content container with improved vertical positioning */}
-      <div className="relative z-20 max-w-4xl mx-auto text-center px-6 py-16 mt-10">
+      {/* Content container with improved vertical positioning - moved down */}
+      <div className="relative z-20 max-w-4xl mx-auto text-center px-6 py-16 mt-32">
         <motion.h1
           variants={titleContainer}
           initial="hidden"
