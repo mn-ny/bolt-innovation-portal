@@ -1,67 +1,35 @@
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
+import { useRef } from "react";
+import { Trophy, Medal, Award } from "lucide-react";
 
 interface PrizeProps {
   title: string;
   amount: string;
-  description: string;
-  emoji: string;
+  details: string;
+  icon: React.ReactNode;
 }
 
 const prizes: PrizeProps[] = [
   {
     title: "First Place",
-    amount: "$250,000",
-    description: "For the most innovative solution with the highest impact potential",
-    emoji: "🏆"
+    amount: "$10,000",
+    details: "The winning team will receive $10,000 and opportunities to pitch to investors.",
+    icon: <Trophy className="w-8 h-8 text-yellow-300" />
   },
   {
     title: "Second Place",
-    amount: "$100,000",
-    description: "For exceptional technical implementation and presentation",
-    emoji: "🥈"
+    amount: "$5,000",
+    details: "The runner-up team will receive $5,000 and mentorship from industry leaders.",
+    icon: <Medal className="w-8 h-8 text-gray-300" />
+  },
+  {
+    title: "Third Place",
+    amount: "$2,500",
+    details: "The third-place team will receive $2,500 and product launch support.",
+    icon: <Award className="w-8 h-8 text-amber-700" />
   }
 ];
-
-// Component for animated counting of prize amounts
-const CountAnimation = ({ value }: { value: string }) => {
-  const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  
-  useEffect(() => {
-    if (isInView) {
-      let start = 0;
-      const end = numericValue;
-      // Get animation duration based on the value (higher values animate longer)
-      const duration = Math.min(2000, Math.log(end) * 400);
-      const incrementTime = Math.floor(duration / end);
-      
-      // Don't let increment time go below 25ms
-      const timer = setInterval(() => {
-        start += Math.ceil(end / (duration / 25));
-        if (start > end) {
-          setCount(end);
-          clearInterval(timer);
-        } else {
-          setCount(start);
-        }
-      }, incrementTime);
-      
-      return () => clearInterval(timer);
-    }
-  }, [isInView, numericValue]);
-  
-  // Format the count as currency
-  const formattedCount = count ? `$${count.toLocaleString()}` : "$0";
-  
-  return <span ref={ref}>{isInView ? formattedCount : value}</span>;
-};
 
 export default function PrizesSection() {
   const ref = useRef(null);
@@ -73,7 +41,7 @@ export default function PrizesSection() {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.1
+        staggerChildren: 0.2
       }
     }
   };
@@ -85,68 +53,26 @@ export default function PrizesSection() {
       opacity: 1,
       transition: {
         type: "spring",
-        damping: 20,
+        damping: 25,
         stiffness: 100
-      }
-    }
-  };
-  
-  const headingVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const buttonVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 20,
-        stiffness: 100,
-        delay: 0.6
-      }
-    },
-    hover: {
-      scale: 1.05,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 10
       }
     }
   };
 
   return (
-    <section ref={ref} className="relative py-24 overflow-hidden" id="prizes">
-      {/* Background gradient */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isInView ? 1 : 0 }}
-        transition={{ duration: 1.2 }}
-        className="absolute inset-0 bg-gradient-to-t from-hackathon-dark/0 via-hackathon-blue/10 to-hackathon-dark/0 z-0"
-      />
-      
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section ref={ref} id="process" className="py-24 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6">
         <motion.div
-          variants={headingVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-16 max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-display">
-            $1M+ in Prizes
+            Prizes & Rewards
           </h2>
-          <p className="text-lg text-white/70">
-            Compete for substantial prizes across multiple categories
+          <p className="text-lg text-white/70 max-w-2xl mx-auto">
+            Win amazing prizes and recognition for your innovative solutions
           </p>
         </motion.div>
         
@@ -154,57 +80,41 @@ export default function PrizesSection() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {prizes.map((prize, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              whileHover={{ 
-                y: -5, 
-                transition: { type: "spring", stiffness: 300, damping: 15 }
-              }}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              className="h-full"
             >
-              <div className="bg-black/20 backdrop-blur-lg rounded-2xl overflow-hidden h-full flex flex-col transform transition-all duration-300 hover:bg-black/30">
-                <div className="p-6 pb-0 flex flex-col items-center text-center">
-                  <motion.div
-                    whileHover={{ 
-                      scale: 1.1,
-                      transition: { type: "spring", stiffness: 300, damping: 10 }
-                    }}
-                    className="text-5xl mb-6"
-                  >
-                    {prize.emoji}
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-white font-display mb-2">
-                    {prize.title}
-                  </h3>
-                  <div className="text-white text-3xl font-bold mt-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                    <CountAnimation value={prize.amount} />
+              <div className="relative h-full rounded-2xl overflow-hidden border border-white/10">
+                {/* Glassmorphism background with gradients */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#2c3040] via-[#1e293b] to-[#0f172a] opacity-90"></div>
+                
+                {/* Glass overlay */}
+                <div className="absolute inset-0 backdrop-blur-sm bg-black/10"></div>
+                
+                {/* Light overlay at the top (glassmorphism effect) */}
+                <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/10 to-transparent"></div>
+                
+                {/* Content */}
+                <div className="relative h-full flex flex-col p-8">
+                  <div className="mb-6 bg-hackathon-blue-light/10 p-3 rounded-full w-fit">
+                    {prize.icon}
                   </div>
-                </div>
-                <div className="flex-grow flex items-center justify-center text-center p-6">
-                  <p className="text-white/80">{prize.description}</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">{prize.title}</h3>
+                  <p className="text-3xl font-bold text-hackathon-blue-light mb-4">
+                    {prize.amount}
+                  </p>
+                  <p className="text-white/70 flex-grow">
+                    {prize.details}
+                  </p>
                 </div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
-        
-        <motion.div
-          variants={buttonVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          whileHover="hover"
-          className="flex justify-center mt-16"
-        >
-          <Button 
-            variant="outline" 
-            className="bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 px-8 py-6 rounded-full transition-all duration-300 text-lg font-medium flex items-center gap-2"
-            onClick={() => window.location.href = "/faq"}
-          >
-            View All Prizes <ArrowRight className="ml-1 h-5 w-5" />
-          </Button>
         </motion.div>
       </div>
     </section>

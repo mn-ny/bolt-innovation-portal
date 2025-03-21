@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -22,10 +22,10 @@ export default function Header() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const navigationItems = [
-    { label: "Info", path: "/info" },
-    { label: "Judges", path: "/judges" },
-    { label: "Process", path: "/process" },
-    { label: "FAQ", path: "/faq" }
+    { label: "Info", href: "#info" },
+    { label: "Judges", href: "#judges" },
+    { label: "Process", href: "#process" },
+    { label: "FAQ", href: "#faq" }
   ];
 
   return (
@@ -34,29 +34,29 @@ export default function Header() {
       isScrolled ? "bg-hackathon-dark/80 backdrop-blur-md border-b border-white/5" : "bg-transparent"
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
+        <a href="#" className="flex items-center space-x-2">
           <img 
             src="https://raw.githubusercontent.com/mn-ny/static/refs/heads/main/bolt.png" 
             alt="Bolt Logo" 
             className="h-8 w-auto"
           />
-        </Link>
+        </a>
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navigationItems.map((item) => (
-            <Link
+            <a
               key={item.label}
-              to={item.path}
+              href={item.href}
               className={cn(
                 "text-sm font-medium transition-colors duration-200",
-                location.pathname === item.path 
+                location.pathname === item.href 
                   ? "text-white" 
                   : "text-white/70 hover:text-white"
               )}
             >
               {item.label}
-            </Link>
+            </a>
           ))}
         </nav>
         
@@ -81,19 +81,19 @@ export default function Header() {
         <div className="md:hidden absolute top-full left-0 right-0 bg-hackathon-dark/90 backdrop-blur-lg border-b border-white/10 py-4 px-6 animate-fade-in">
           <nav className="flex flex-col space-y-4">
             {navigationItems.map((item) => (
-              <Link
+              <a
                 key={item.label}
-                to={item.path}
+                href={item.href}
                 className={cn(
                   "text-sm font-medium py-2 transition-colors duration-200",
-                  location.pathname === item.path 
+                  location.pathname === item.href 
                     ? "text-white" 
                     : "text-white/70 hover:text-white"
                 )}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
           </nav>
         </div>

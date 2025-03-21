@@ -8,7 +8,7 @@ import {
   AccordionTrigger
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 interface FAQItem {
   question: string;
@@ -68,7 +68,7 @@ export default function FAQSection() {
   };
   
   return (
-    <section ref={ref} className="relative py-24 overflow-hidden bg-hackathon-dark">
+    <section ref={ref} id="faq" className="relative py-24 overflow-hidden bg-hackathon-dark">
       {/* Background gradient */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -114,15 +114,17 @@ export default function FAQSection() {
                   value={`item-${index}`}
                   className="border-none bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
                 >
-                  <AccordionTrigger className="px-6 py-4 text-white hover:bg-white/5 transition-colors data-[state=open]:bg-white/5">
+                  <AccordionTrigger 
+                    className="px-6 py-4 text-white hover:bg-white/5 transition-colors data-[state=open]:bg-white/5" 
+                    showIcon={false}
+                  >
                     <div className="flex items-center justify-between w-full">
                       <span className="text-xl font-medium text-left">{item.question}</span>
                       <div className="bg-white/10 rounded-full p-1 ml-4">
-                        {openItems.includes(`item-${index}`) ? (
-                          <ChevronUp className="h-5 w-5 text-white" />
-                        ) : (
-                          <ChevronDown className="h-5 w-5 text-white" />
-                        )}
+                        <ChevronDown className={cn(
+                          "h-5 w-5 text-white transition-transform duration-200",
+                          openItems.includes(`item-${index}`) && "rotate-180"
+                        )} />
                       </div>
                     </div>
                   </AccordionTrigger>
@@ -143,7 +145,7 @@ export default function FAQSection() {
           className="text-center mt-12"
         >
           <p className="text-white/60">
-            Still have questions? <a href="/faq" className="text-blue-400 hover:text-blue-300 underline">Visit our FAQ page</a>
+            Still have questions? <a href="#contact" className="text-blue-400 hover:text-blue-300 underline">Contact us</a>
           </p>
         </motion.div>
       </div>

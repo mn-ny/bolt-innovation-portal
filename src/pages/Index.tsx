@@ -35,6 +35,7 @@ export default function Index() {
         <main>
           <HeroSection setIsLoading={setIsLoading} />
           <SponsorMarquee />
+          <div id="info" className="h-24"></div> {/* Anchor point for info section */}
           <PrizesSection />
           <JudgesCarousel />
           <FAQSection />
