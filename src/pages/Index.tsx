@@ -4,10 +4,16 @@ import HeroSection from "@/components/HeroSection";
 import SponsorsSection from "@/components/SponsorsSection";
 import EventDetailsSection from "@/components/EventDetailsSection";
 import PrizesSection from "@/components/PrizesSection";
+import { motion } from "framer-motion";
 
 export default function Index() {
   return (
-    <div className="min-h-screen bg-hackathon-dark overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-hackathon-dark overflow-hidden"
+    >
       <Header />
       <main>
         <HeroSection />
@@ -15,6 +21,6 @@ export default function Index() {
         <PrizesSection />
         <SponsorsSection />
       </main>
-    </div>
+    </motion.div>
   );
 }
