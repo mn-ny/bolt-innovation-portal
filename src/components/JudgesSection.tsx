@@ -9,45 +9,75 @@ interface JudgeProps {
   name: string;
   twitter: string;
   bio: string;
-  image?: string;
+  image: string;
 }
 
 const judges: JudgeProps[] = [
   {
-    name: "Dr. Sophia Chen",
-    twitter: "sophia_ai_expert",
-    bio: "AI Research Director at Future Labs. Previously at Google DeepMind with 40+ published papers on machine learning and ethics in AI.",
-    image: "/placeholder.svg"
+    name: "Pieter Levels",
+    twitter: "levelsio",
+    bio: "Founder of Nomad List and Remote OK. Building profitable internet businesses.",
+    image: "https://pbs.twimg.com/profile_images/1589756412078555136/YlXMBzhp_400x400.jpg"
   },
   {
-    name: "Marcus Johnson",
-    twitter: "marcusj_tech",
-    bio: "CTO at TechForward. Founded three successful startups specializing in cloud computing and distributed systems.",
-    image: "/placeholder.svg"
+    name: "Logan Kilpatrick",
+    twitter: "OfficialLoganK",
+    bio: "AI Developer Relations at OpenAI, formerly at Apple. Passionate about making AI accessible to developers worldwide.",
+    image: "https://pbs.twimg.com/profile_images/1379817647139737600/YHL9uBk0_400x400.jpg"
   },
   {
-    name: "Elena Rodriguez",
-    twitter: "elena_innov",
-    bio: "VP of Innovation at GlobalTech with 15 years experience in digital transformation. Mentored hundreds of early-stage startups.",
-    image: "/placeholder.svg"
+    name: "Sara Du",
+    twitter: "saranormous",
+    bio: "Co-founder & CEO of Alloy Automation. Forbes 30 Under 30. Building the future of e-commerce automation.",
+    image: "https://pbs.twimg.com/profile_images/1689443134919327744/geqEJeF8_400x400.jpg"
   },
   {
-    name: "Dr. James Wilson",
-    twitter: "prof_jwilson",
-    bio: "MIT Professor specializing in computational thinking and machine learning. Author of several books on AI ethics.",
-    image: "/placeholder.svg"
+    name: "Theo Browne",
+    twitter: "theo",
+    bio: "Founder of Ping Labs, creator of t3.gg. TypeScript enthusiast and developer educator.",
+    image: "https://pbs.twimg.com/profile_images/1799982162831396865/Fnol01I1_400x400.jpg"
   },
   {
-    name: "Aisha Patel",
-    twitter: "aisha_ecotech",
-    bio: "Founder & CEO of EcoTech Solutions. Developed award-winning sustainable tech solutions deployed in over 20 countries.",
-    image: "/placeholder.svg"
+    name: "Evan You",
+    twitter: "youyuxi",
+    bio: "Creator of Vue.js, Vite, and other open source tools. Independent open source developer.",
+    image: "https://pbs.twimg.com/profile_images/1856284397072478208/hSEXLkPN_400x400.jpg"
   },
   {
-    name: "Michael Zhang",
-    twitter: "michael_ai",
-    bio: "Lead Developer at OpenAI. Expert in generative AI models and contributor to numerous open-source projects.",
-    image: "/placeholder.svg"
+    name: "Krishna Panyam",
+    twitter: "thisiskp_",
+    bio: "Co-founder at Reflect. Building tools for thought and knowledge management.",
+    image: "https://pbs.twimg.com/profile_images/1288449070344937473/fKlvccnM_400x400.jpg"
+  },
+  {
+    name: "Alex Albert",
+    twitter: "alexalbert__",
+    bio: "Co-founder at Rows. Building the next generation spreadsheet with superpowers.",
+    image: "https://pbs.twimg.com/profile_images/1856486626072915968/JEQpB9CW_400x400.jpg"
+  },
+  {
+    name: "Ben Tossell",
+    twitter: "bentossell",
+    bio: "Founder of Makerpad (acquired by Zapier). No-code advocate and entrepreneur.",
+    image: "https://pbs.twimg.com/profile_images/1878086921726943233/vOx1kjeP_400x400.jpg"
+  },
+  {
+    name: "Ricardo Cabello",
+    twitter: "mrdoob",
+    bio: "Creator of Three.js. Pushing the boundaries of what's possible on the web with 3D graphics.",
+    image: "https://pbs.twimg.com/profile_images/1619147369999917056/5jd5MK9C_400x400.jpg"
+  },
+  {
+    name: "Andrej Karpathy",
+    twitter: "karpathy",
+    bio: "Previously Senior Director of AI at Tesla, founding member of OpenAI. Researcher and educator in deep learning.",
+    image: "https://pbs.twimg.com/profile_images/1296667294148382721/9Pr6XrPB_400x400.jpg"
+  },
+  {
+    name: "Tim Soret",
+    twitter: "timsoret",
+    bio: "Game designer and filmmaker. Creative Director of The Last Night at Odd Tales studio.",
+    image: "https://pbs.twimg.com/profile_images/1882867567099809793/qTScdAu-_400x400.jpg"
   }
 ];
 
