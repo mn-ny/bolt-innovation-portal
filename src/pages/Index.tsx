@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import SponsorMarquee from "@/components/SponsorMarquee";
 import PrizesSection from "@/components/PrizesSection";
-import CinematicJudgesSection from "@/components/CinematicJudgesSection";
+import JudgesCarousel from "@/components/JudgesCarousel";
 import LoadingScreen from "@/components/LoadingScreen";
 import FAQSection from "@/components/FAQSection";
 
@@ -36,7 +36,7 @@ export default function Index() {
           <HeroSection setIsLoading={setIsLoading} />
           <SponsorMarquee />
           <PrizesSection />
-          <CinematicJudgesSection />
+          <JudgesCarousel />
           <FAQSection />
         </main>
       </motion.div>

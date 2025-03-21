@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { scrollToElement } from "@/utils/scroll-utils";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,17 +21,9 @@ export default function Header() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    if (location.pathname === '/') {
-      e.preventDefault();
-      setIsMenuOpen(false);
-      scrollToElement(id, 80); // Add some offset for the fixed header
-    }
-  };
-
   const navigationItems = [
     { label: "Info", path: "/info" },
-    { label: "Judges", path: "/judges", id: "judges" },
+    { label: "Judges", path: "/judges" },
     { label: "Process", path: "/process" },
     { label: "FAQ", path: "/faq" }
   ];
@@ -57,7 +48,6 @@ export default function Header() {
             <Link
               key={item.label}
               to={item.path}
-              onClick={(e) => item.id && handleNavClick(e, item.id)}
               className={cn(
                 "text-sm font-medium transition-colors duration-200",
                 location.pathname === item.path 
@@ -94,16 +84,13 @@ export default function Header() {
               <Link
                 key={item.label}
                 to={item.path}
-                onClick={(e) => {
-                  if (item.id) handleNavClick(e, item.id);
-                  else setIsMenuOpen(false);
-                }}
                 className={cn(
                   "text-sm font-medium py-2 transition-colors duration-200",
                   location.pathname === item.path 
                     ? "text-white" 
                     : "text-white/70 hover:text-white"
                 )}
+                onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
               </Link>
