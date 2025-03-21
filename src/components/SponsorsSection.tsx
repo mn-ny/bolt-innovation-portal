@@ -40,11 +40,11 @@ export default function SponsorsSection() {
   return (
     <section
       id="sponsors-section"
-      className="py-16 relative z-10"
+      className="py-24 relative z-10 mt-[-10vh]"
     >
       <div className="max-w-6xl mx-auto px-6">
         <div 
-          className={`text-center mb-12 transform ${
+          className={`text-center mb-16 transform ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           } transition-all duration-700 ease-out`}
         >

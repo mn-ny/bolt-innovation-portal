@@ -21,20 +21,21 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="hackathon-section min-h-screen flex flex-col items-center justify-center pt-20 pb-20 relative">
-      <div className="spline-container animate-pulse-glow">
+    <section className="hackathon-section min-h-screen relative flex flex-col items-center justify-center pt-20 pb-20">
+      {/* Repositioned spline container */}
+      <div className="spline-container absolute inset-0 top-auto h-[70vh] bottom-0">
         {!isMobile && (
           <Spline
             scene="https://prod.spline.design/ITO6OJ2xaZTLiTae/scene.splinecode"
             onLoad={() => setIsLoaded(true)}
           />
         )}
-        {(isMobile || !isLoaded) && (
-          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-500/30 to-transparent" />
-        )}
       </div>
       
-      <div className="relative z-10 max-w-4xl mx-auto text-center px-6 animate-fade-up">
+      {/* Enhanced gradient overlay */}
+      <div className="absolute bottom-0 left-0 w-full h-[40vh] z-[1] bg-gradient-to-t from-hackathon-dark via-hackathon-dark/95 to-transparent" />
+      
+      <div className="relative z-10 max-w-4xl mx-auto text-center px-6 animate-fade-up mt-[-10vh]">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
           <span className="block">The World's</span>
           <span className="block italic font-normal">Largest</span>
