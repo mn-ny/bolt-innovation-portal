@@ -2,60 +2,50 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Spline from "@splinetool/react-spline";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function HeroSection() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
-  }, []);
+  const isMobile = useIsMobile();
 
   return (
-    <section className="hackathon-section min-h-screen relative flex flex-col items-center justify-center pt-20 pb-20">
-      {/* Top gradient overlay to ensure smooth transition at the top */}
-      <div className="absolute top-0 left-0 w-full h-[20vh] z-[1] bg-gradient-to-b from-hackathon-dark via-hackathon-dark/95 to-transparent" />
+    <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+      {/* Top gradient overlay */}
+      <div className="absolute top-0 left-0 w-full h-[100px] z-10 bg-gradient-to-b from-hackathon-dark to-transparent" />
       
-      {/* Repositioned spline container */}
-      <div className="spline-container absolute inset-0 top-auto h-[70vh] bottom-0">
+      {/* Full-height Spline container */}
+      <div className="absolute inset-0 w-full h-full">
         {!isMobile && (
           <Spline
             scene="https://prod.spline.design/ITO6OJ2xaZTLiTae/scene.splinecode"
             onLoad={() => setIsLoaded(true)}
+            className="w-full h-full object-cover"
           />
         )}
       </div>
       
-      {/* Enhanced gradient overlay for bottom */}
-      <div className="absolute bottom-0 left-0 w-full h-[40vh] z-[1] bg-gradient-to-t from-hackathon-dark via-hackathon-dark/95 to-transparent" />
+      {/* Bottom gradient overlay */}
+      <div className="absolute bottom-0 left-0 w-full h-[300px] z-10 bg-gradient-to-t from-hackathon-dark to-transparent" />
       
-      <div className="relative z-10 max-w-4xl mx-auto text-center px-6 animate-fade-up mt-[-10vh]">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
-          <span className="block">The World's</span>
-          <span className="block italic font-normal">Largest</span>
-          <span className="block">Hackathon</span>
+      {/* Content container with improved vertical positioning */}
+      <div className="relative z-20 max-w-4xl mx-auto text-center px-6 py-16 mt-10">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-tight leading-tight">
+          <span className="block font-display">The World's</span>
+          <span className="block italic font-normal font-display text-white/90">Largest</span>
+          <span className="block font-display">Hackathon</span>
         </h1>
         
-        <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto">
           Transform your operations with AI-driven solutions that cut costs, save time, and boost efficiency all in record time.
         </p>
         
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button size="lg" className="bg-white text-hackathon-dark hover:bg-white/90 px-8 py-6 rounded-full transition-all duration-300 shadow-lg shadow-blue-500/20">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <Button size="lg" className="bg-white text-hackathon-dark hover:bg-white/90 px-10 py-7 rounded-full transition-all duration-300 text-base font-medium shadow-xl shadow-blue-500/20">
             Register Now
           </Button>
-          <Button variant="outline" size="lg" className="bg-transparent border border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded-full transition-all duration-300">
-            <span className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-blue-500 inline-block"></span>
+          <Button variant="outline" size="lg" className="bg-transparent border-2 border-white/20 text-white hover:bg-white/10 px-10 py-7 rounded-full transition-all duration-300 text-base font-medium">
+            <span className="flex items-center gap-3">
+              <span className="h-3 w-3 rounded-full bg-blue-500 inline-block animate-pulse-subtle"></span>
               Become a Sponsor
             </span>
           </Button>
