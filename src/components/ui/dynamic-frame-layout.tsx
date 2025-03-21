@@ -47,14 +47,15 @@ function FrameComponent({
   isHovered,
 }: FrameComponentProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const isImage = video.endsWith('.jpg') || video.endsWith('.jpeg') || video.endsWith('.png') || video.endsWith('_400x400.jpg')
 
   useEffect(() => {
-    if (isHovered) {
-      videoRef.current?.play()
-    } else {
-      videoRef.current?.pause()
+    if (!isImage && isHovered && videoRef.current) {
+      videoRef.current.play()
+    } else if (!isImage && videoRef.current) {
+      videoRef.current.pause()
     }
-  }, [isHovered])
+  }, [isHovered, isImage])
 
   return (
     <div
@@ -86,14 +87,22 @@ function FrameComponent({
               transition: "transform 0.3s ease-in-out",
             }}
           >
-            <video
-              className="w-full h-full object-cover"
-              src={video}
-              loop
-              muted
-              playsInline
-              ref={videoRef}
-            />
+            {isImage ? (
+              <img
+                className="w-full h-full object-cover"
+                src={video}
+                alt="Judge"
+              />
+            ) : (
+              <video
+                className="w-full h-full object-cover"
+                src={video}
+                loop
+                muted
+                playsInline
+                ref={videoRef}
+              />
+            )}
           </div>
         </div>
 
