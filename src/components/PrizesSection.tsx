@@ -1,7 +1,9 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 
 interface PrizeProps {
   title: string;
@@ -13,21 +15,15 @@ interface PrizeProps {
 const prizes: PrizeProps[] = [
   {
     title: "First Place",
-    amount: "$500,000",
+    amount: "$250,000",
     description: "For the most innovative solution with the highest impact potential",
     emoji: "🏆"
   },
   {
     title: "Second Place",
-    amount: "$250,000",
+    amount: "$100,000",
     description: "For exceptional technical implementation and presentation",
     emoji: "🥈"
-  },
-  {
-    title: "Third Place",
-    amount: "$100,000",
-    description: "For outstanding creativity and problem-solving approach",
-    emoji: "🥉"
   }
 ];
 
@@ -107,6 +103,28 @@ export default function PrizesSection() {
     }
   };
 
+  const buttonVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 20,
+        stiffness: 100,
+        delay: 0.6
+      }
+    },
+    hover: {
+      scale: 1.05,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 10
+      }
+    }
+  };
+
   return (
     <section ref={ref} className="relative py-24 overflow-hidden" id="prizes">
       {/* Background gradient */}
@@ -136,7 +154,7 @@ export default function PrizesSection() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
         >
           {prizes.map((prize, index) => (
             <motion.div
@@ -171,6 +189,22 @@ export default function PrizesSection() {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+        
+        <motion.div
+          variants={buttonVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          whileHover="hover"
+          className="flex justify-center mt-16"
+        >
+          <Button 
+            variant="outline" 
+            className="bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 px-8 py-6 rounded-full transition-all duration-300 text-lg font-medium flex items-center gap-2"
+            onClick={() => window.location.href = "/faq"}
+          >
+            View All Prizes <ArrowRight className="ml-1 h-5 w-5" />
+          </Button>
         </motion.div>
       </div>
     </section>
